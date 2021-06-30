@@ -14,10 +14,7 @@ const char* password = "120478Aj";
 void startCameraServer();
 
 extern int matched_id;
-
-String server = "http://www.attendance.indevtechnology.com/post-data.php";
-String serverPath = "/post-data.php";
-int port = 80;
+char* server = "attendance.indevtechnology.com";
 
 WiFiClient client;
 HTTPClient http;
@@ -122,21 +119,57 @@ void loop() {
 
     if (str == "1b e8 e1 44" || str == "8b af e4 44") {
       // Do Something
+      String url = "rfid=";
+      url += str;
       digitalWrite(4, HIGH);
       delay(500);
       digitalWrite(4, LOW);
-      delay(500);
 
-      postData(str);
+      // postData(str);
+      post(url);
 
-      //      client.connect(server, port);
-      //      client.println("POST " + serverPath + " HTTP/1.1");
-      //      client.println("Host: " + server);
-      //      client.println("Content-Type: multipart/form-data");
-      //      client.println();
-
-      
     }
+
+    delay(3000);
+  }
+}
+
+void takePicture() {
+  // Take Picture
+  camera_fb_t * fb = NULL;
+  fb = esp_camera_fb_get();
+  if (!fb) {
+    Serial.println("Camera capture failed");
+    blinkLed();
+    return;
+  }
+}
+void blinkLed() {
+  digitalWrite(4, HIGH);
+  delay(100);
+  digitalWrite(4, LOW);
+  delay(100);
+  digitalWrite(4, HIGH);
+  delay(100);
+  digitalWrite(4, LOW);
+  delay(100);
+}
+
+void post(String url) {
+  if (client.connect(server, 80)) {
+    Serial.println("Connected");
+    client.println("POST /post-data.php HTTP/1.1");
+    client.println("Host: attendance.indevtechnology.com");
+    client.println("Content-Type: application/x-www-form-urlencoded");
+    client.print("Content-Length: ");
+    client.println(url.length());
+    client.println();
+    client.println(url);
+    client.println("Connection: close");
+    client.println();
+    client.stop();
+  } else {
+    Serial.println("Connection Error");
   }
 }
 
