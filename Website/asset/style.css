@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+nav {
+  overflow: hidden;
+  background-color: #FEEE5F;
+  padding: 0px 5%;
+  height: 50px;
+}
+
+nav a {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 16px;
+  color: #000;
+}
+
+p {
+  font-size: 24px;
+  margin-left: 16px;
+}
+
+img {
+  max-height: 120px;
+}
+
+.add {
+  outline: none;
+  height: 48.5px;
+  border: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px 0px;
+  padding: 1px 10px;
+  border-radius: 10px;
+  background-color: #FEEE5F;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper {
+  padding: 0px 5%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr {
+  border-bottom: 1px solid #E6E6E6;
+}
+
+th, td {
+  text-align: left;
+  padding: 15px 16px;
+}
+
+.rfid {
+  text-transform: uppercase;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  background-color: inherit;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+}
+
+.bg-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-contents {
+  height: 300px;
+  width: 500px;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  border-radius: 4px;
+}
+
+input {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  margin: 15px auto;
+  display: block;
+  width: 50%;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 25px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 42px;
+  color: #333;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
