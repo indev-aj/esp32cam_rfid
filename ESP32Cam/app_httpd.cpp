@@ -21,6 +21,7 @@
 #include "fb_gfx.h"
 #include "fd_forward.h"
 #include "fr_forward.h"
+#include "fr_flash.h"
 
 #define ENROLL_CONFIRM_TIMES 5
 #define FACE_ID_SAVE_NUMBER 7
@@ -174,7 +175,7 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
     }
     if (align_face(net_boxes, image_matrix, aligned_face) == ESP_OK){
         if (is_enrolling == 1){
-            int8_t left_sample_face = enroll_face(&id_list, aligned_face);
+            int8_t left_sample_face = enroll_face_id_to_flash(&id_list, aligned_face);
 
             if(left_sample_face == (ENROLL_CONFIRM_TIMES - 1)){
                 Serial.printf("Enrolling Face ID: %d\n", id_list.tail);
@@ -646,6 +647,7 @@ void startCameraServer(){
     mtmn_config.o_threshold.candidate_number = 1;
     
     face_id_init(&id_list, FACE_ID_SAVE_NUMBER, ENROLL_CONFIRM_TIMES);
+    read_face_id_from_flash(&id_list);
     
     Serial.printf("Starting web server on port: '%d'\n", config.server_port);
     if (httpd_start(&camera_httpd, &config) == ESP_OK) {
