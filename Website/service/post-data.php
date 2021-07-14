@@ -53,8 +53,8 @@ function sendPhoto($img_url, $name)
 }
 
 // Set your Bot ID and Chat ID.
-$telegrambot = '1881958818:AAGKhZVkH7MWRhatPhIfFL2DC1kItQUAU6A';
-$telegramchatid = 400946997;
+$telegrambot = 'MTg4MTk1ODgxODpBQUdLaFpWa0g3TVdSaGF0UGhJZkZMMkRDMWtJdFFVQVU2QQ==';
+$telegramchatid = NDAwOTQ2OTk3;
 
 $rfid = $_POST["rfid"];
 $face_id = $_POST["face_id"];
